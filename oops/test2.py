@@ -1,8 +1,8 @@
 class Person :
     # constructor:- pass information to class. default method or function
     def __init__(madhu, name, surname, emailId,year_of_birth ):
-        madhu.name1 = name
-        madhu.surname = surname
+        madhu._name1 = name
+        madhu.__surname = surname
         madhu.emailId = emailId
         madhu.year_of_birth = year_of_birth
 
@@ -13,8 +13,7 @@ class Person :
 anuj_var = Person("anuj", "bhandari", "anuj@gmail.com", 1994) # class variable is called object
 madhu = Person("Madhu", "Priya", "madhu.priya@klh.edu.in", 2344) # real entity
 sudh = Person("sudhanshu", " Kumar", "sudhanshu@gmail.com",7687)
-
-
+print(madhu._Person__surname)
 print(anuj_var.name1)
 print(anuj_var.surname)
 print(anuj_var.emailId)

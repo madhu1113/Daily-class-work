@@ -4,6 +4,9 @@ class person2:
     __surname = "priya"
     yob = 1994
 
+    def hello(self):
+        print("Hello")
+
     def _age(self, current_year): # protected function
         return current_year-self.yob
 
