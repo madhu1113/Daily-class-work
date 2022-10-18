@@ -1,0 +1,100 @@
+Django Documentation
+
+https://www.djangoproject.com/download/
+pip install Django==4.1.2
+for mac:-> pip3 install django==4.1.2
+
+make a directory Django project—> o1 project
+
+terminal:-> go to the particular directory
+
+django-admin startproject helloworld—> it gives you all the boilerplate 
+now you will get sqlite file
+
+cd hello	world
+python3 manage.py runserver
+
+
+Understanding the file structure:->
+init file:-> we don’t touch this file
+
+settings.py:- what kind of django settings you are using, never show the secret key to anyone. it is dangerous. Since we are not deploying this project to serbver so it’s fine.
+BASE_DIR = Path(__file__).resolve().parent.parent:-> you have to set when you are hosting it to live server.
+INSTALLED_APPS = In django everything is in the form of app.
+MIDDLEWARE =sometimes you may require
+TEMPLATES :- usually we don’t touch that only if we change the directory we need to mention it here DIRS": [].
+DATABASES:- compatible with sqlite3, mysql, posgres, firebase etc
+AUTH_PASSWORD_VALIDATORS = we don’t touch them very often
+STATIC_URL:- how you can add yor static file like html, css, js or bootstrap fileetc
+
+
+urls.py:- The most important file. This is the first file which will get interacted once you make a request.
+Here we mention where the user needs to go.
+
+wsgi.py(web service gateway interface file):- we don’t touch it usually
+
+
+db.sqlite3:- not redable in our editor. we have appln for that
+
+manage.py:- how to manage and import our database here.
+
+
+Till now we havn’t seen 
+where are our models where we will be writing quaries to interacting with our sqlite database. 
+where is our view file where we write what happen when you click on sth.
+Honestly these files are not even present here.
+for that we need to create an app. we have just created a project till now.
+
+
+Our very first Django app:-> we are going to create an app called hola
+ls
+python3 manage.py startapp hola:-> hola app got created
+helloworld is our base app and inside that we have created an app named hola.
+
+Explore hola app
+init:- we don’t touch this one.
+admin.py:-> configuration file for buikt in Django admin app.
+apps.py:->  configuration file for app itself. we will be defining lot of classes and all here.
+models.py:-> here we define database models, writing configuration for database. Django automatically translates it to tables.
+test.py:- mainly for unit testing
+views.py:- handles all the request and response logic for your web application. when user hits a button what is supposed to happen whether to get data from database or serve a webpage?
+
+Configuring new app
+step1:- settings.py:-> INSTALLED_APPS-> ‘hola’,
+
+step 2:- hola:-> views.py:- 
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+def homePageView(request):
+    return HttpResponse("Hola means Hello in Spanish")
+
+
+step 3:- make a file in hola called urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path("", views.homePageView, name='home'),
+    ]
+
+step 4:- helloworld/urls
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path(" ", include('hola.urls'))
+]
+
+now run the server:- python3 manage.py runserver
+hit the url in browser i.e 127.0.0.1:8000
+
+
+
+
+
+
+
+
+
